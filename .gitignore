@@ -140,9 +140,14 @@ $RECYCLE.BIN/
 
 # py-util modules
 py-*/
+py_*/
 
 # Dev modules
 *test*/
 *log*/
 *sample*/
 *.log
+
+# Spyder files
+*.spyder*
+*spyder*/
