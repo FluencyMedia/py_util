@@ -151,4 +151,8 @@ py_*/
 # Spyder files
 *.spyder*
 *spyder*/
+<<<<<<< HEAD
 py_dev.py
+=======
+py_loc.py
+>>>>>>> origin/master
