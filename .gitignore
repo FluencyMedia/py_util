@@ -151,3 +151,4 @@ py_*/
 # Spyder files
 *.spyder*
 *spyder*/
+py_dev.py
