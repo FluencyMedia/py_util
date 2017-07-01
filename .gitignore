@@ -139,8 +139,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # py-util modules
-py-*/
-py_*/
+# py-*/
+# py_*/
 
 # Dev modules
 *test*/
@@ -157,3 +157,6 @@ py_dev.py
 py_loc.py
 >>>>>>> origin/master
 __init__.py
+
+# PyCharm
+.idea*
