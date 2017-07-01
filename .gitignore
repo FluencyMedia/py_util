@@ -138,10 +138,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# py-util modules
-py-*/
-py_*/
-
 # Dev modules
 *test*/
 *log*/
