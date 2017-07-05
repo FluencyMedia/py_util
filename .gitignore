@@ -151,3 +151,6 @@ $RECYCLE.BIN/
 # py-util modules
 py-*/
 py_*/
+
+# PyCharm config
+.idea/
