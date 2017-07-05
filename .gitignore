@@ -153,4 +153,4 @@ py-*/
 py_*/
 
 # PyCharm config
-.idea/
+*.idea/
