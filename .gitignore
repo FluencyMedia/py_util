@@ -147,9 +147,7 @@ $RECYCLE.BIN/
 # Spyder files
 *.spyder*
 *spyder*/
-<<<<<<< HEAD
-py_dev.py
-=======
-py_loc.py
->>>>>>> origin/master
-__init__.py
+
+# py-util modules
+py-*/
+py_*/
