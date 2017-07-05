@@ -148,9 +148,5 @@ $RECYCLE.BIN/
 *.spyder*
 *spyder*/
 
-# py-util modules
-py-*/
-py_*/
-
 # PyCharm config
 *.idea/
