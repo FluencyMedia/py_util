@@ -140,7 +140,7 @@ $RECYCLE.BIN/
 
 # Dev modules
 *test*/
-*log*/
+# *log*/
 *sample*/
 *.log
 
