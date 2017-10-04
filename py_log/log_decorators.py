@@ -6,17 +6,17 @@ Created on Mon Sep  5 12:28:14 2016
 """
 
 import datetime
+from functools import wraps
 from py_log.logger import logMain
-
 
 class EnterExitLog():
     def __init__(self, funcName):
         self.funcName = funcName
+        self.init_time = datetime.datetime.now()
 
     def __enter__(self):
         logMain.indentRaise()
         logMain.INFO('Started: ' + self.funcName)
-        self.init_time = datetime.datetime.now()
         return self
 
     def __exit__(self, type, value, tb):
