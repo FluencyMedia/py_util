@@ -8,13 +8,13 @@ Created on Mon Sep 26 19:08:00 2016
 
 import pandas as pd
 
-from py_log.logger import logMain
+from py_log import logMain
 # from py_log.log_decorators import  dec_logEntryExit  # , dec_logDebugOverride
 
-from path_manager import objLoc
+from py_file import objLoc
 
-from py_sheet.url_manager import urlHandler
-from py_frame.frame_manager import objFrame
+from py_sheet import urlHandler
+from py_frame import objFrame
 
 from py_dev import myDevice
 

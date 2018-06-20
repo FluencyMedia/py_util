@@ -8,7 +8,7 @@ Created on Thu Sep  13 18:03:00 2016
 # import typing
 import os
 
-from py_file.file_manager import fManager
+from py_file import fManager
 from config_main import strTimestamp
 
 
@@ -340,8 +340,8 @@ logMain = clsLogger()
 if __name__ == '__main__':
 
     testBase = True
-    testLevels = False
-    testStress = False
+    testLevels = True
+    testStress = True
 
 
 #%% Base tests
@@ -372,7 +372,8 @@ if __name__ == '__main__':
         tmpLogger.ERROR("Test")
         tmpLogger.CRITICAL("Test")
 
-        tmpLogger.write("New Threshold: " + tmpLogger.loggingLevel('DEBUG'), padBefore=1, padAfter=1)
+        tmpLogger.loggingLevel = 'DEBUG'
+        tmpLogger.write("New Threshold: " + tmpLogger.loggingLevel, padBefore=1, padAfter=1)
 
         tmpLogger.DEBUG("Test")
         tmpLogger.INFO("Test")

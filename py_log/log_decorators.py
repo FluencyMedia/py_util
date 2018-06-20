@@ -6,7 +6,7 @@ Created on Mon Sep  5 12:28:14 2016
 """
 
 import datetime
-from py_log.logger import logMain
+from py_log import logMain
 
 
 class EnterExitLog():

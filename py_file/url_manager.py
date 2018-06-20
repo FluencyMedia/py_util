@@ -5,8 +5,8 @@ Created on Fri Sep 23 14:02:59 2016
 @author: lstanevich
 """
 
-from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log import logMain
+from py_log import dec_logEntryExit  # , dec_logDebugOverride
 
 
 @dec_logEntryExit

@@ -8,8 +8,8 @@ Created on Tue Sep 13 17:48:39 2016
 import requests
 import codecs
 
-from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log import logMain
+from py_log import dec_logEntryExit  # , dec_logDebugOverride
 
 
 #%% Input routines

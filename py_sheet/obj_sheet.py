@@ -7,10 +7,10 @@ Created on Thu Sep 15 19:32:59 2016
 
 import pandas as pd
 
-from py_frame.frame_manager import objFrame
-from py_sheet.url_manager import urlHandler
+from py_frame import objFrame
+from py_file import urlHandler
 
-from py_log.logger import logMain
+from py_log import logMain
 # from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
 
 

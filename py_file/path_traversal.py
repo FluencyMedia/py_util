@@ -7,8 +7,8 @@ Created on Wed Sep  7 09:20:29 2016
 
 import os
 
-from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log import logMain
+from py_log import dec_logEntryExit  # , dec_logDebugOverride
 
 
 #%% File traversal modules
@@ -63,6 +63,6 @@ def pathWalk(currFunct, currPath, *args, **kwargs):
 
 if __name__ == '__main__':
 
-    logMain.open('log-path')
+    logMain.open(filename = 'log-path')
     logMain.consoleMirror = True
     logMain.loggingLevel = "INFO"

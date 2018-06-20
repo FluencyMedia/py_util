@@ -7,8 +7,8 @@ Created on Thu Jun 08 20:57:00 2017
 # import json
 import requests
 
-from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log import logMain
+from py_log import dec_logEntryExit  # , dec_logDebugOverride
 
 # from urllib.parse import urlparse, urlunparse
 

@@ -7,7 +7,7 @@ Created on Thu Sep  1 22:53:00 2016
 
 import os
 
-from py_file.path_manager import objLoc
+from py_file import objLoc
 
 
 class fWriter:

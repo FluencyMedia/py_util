@@ -6,9 +6,9 @@ Created on Sat Sep 17 13:39:00 2016
 
 import pandas as pd
 
-from py_sheet.url_manager import urlHandler
+from py_file import urlHandler
 
-from py_log.logger import logMain
+from py_log import logMain
 # from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
 
 
@@ -60,15 +60,15 @@ class objFrame():
 
 if __name__ == '__main__':
 
-    from py_sheet.url_manager import listURLs
+    from py_file import listURLs
 
     logMain.open(fileName='obj_frame')
 
     testUnits = {}
 
-    testUnits['objFrame'] = False
-    testUnits['propQuery'] = False
-    testUnits['testInheritance'] = True
+    testUnits['objFrame'] = True
+    testUnits['propQuery'] = True
+    testUnits['testInheritance'] = False
 
     if testUnits['testInheritance']:
         urlDA = urlHandler(listURLs['urlDA'])
