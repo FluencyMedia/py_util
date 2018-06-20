@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     #    from py_log.logger import clsLogger
 
-    logMain.loggingLevel('DEBUG')
+    logMain.loggingLevel = 'DEBUG'
 
     @dec_logEntryExit
     def testFunc():
