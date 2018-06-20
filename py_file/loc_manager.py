@@ -8,7 +8,7 @@ Created on Mon Sep 26 19:08:00 2016
 
 import pandas as pd
 
-from py_log import logMain
+from py_log.logger import logMain
 # from py_log.log_decorators import  dec_logEntryExit  # , dec_logDebugOverride
 
 from py_file import objLoc

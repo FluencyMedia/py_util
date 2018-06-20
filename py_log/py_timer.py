@@ -5,7 +5,7 @@ Created on 7/13/17 9:56 PM
 @author: lstanevich
 """
 
-from py_log import logMain
+from py_log.logger import logMain
 
 if __name__ == "__main__":
     logMain.open(fileName='py_timer')

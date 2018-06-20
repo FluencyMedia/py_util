@@ -7,7 +7,7 @@ Created on Wed Sep  7 09:20:29 2016
 
 import os
 
-from py_log import logMain
+from py_log.logger import logMain
 from py_log import dec_logEntryExit  # , dec_logDebugOverride
 
 

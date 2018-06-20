@@ -8,7 +8,7 @@ Created on Thu Sep  13 18:03:00 2016
 # import typing
 import os
 
-from py_file import fManager
+from py_file.file_manager import fManager
 from config_main import strTimestamp
 
 

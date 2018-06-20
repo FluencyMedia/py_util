@@ -6,7 +6,7 @@ Created on Mon Sep  5 12:28:14 2016
 """
 
 import datetime
-from py_log import logMain
+from py_log.logger import logMain
 
 
 class EnterExitLog():
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     #    from py_log.logger import clsLogger
 
-    logMain.loggingLevel('DEBUG')
+    logMain.loggingLevel = 'DEBUG'
 
     @dec_logEntryExit
     def testFunc():
