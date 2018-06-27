@@ -16,10 +16,12 @@ class EnterExitLog():
     def __enter__(self):
         logMain.indentRaise()
         logMain.INFO('Started: ' + self.funcName)
+        logMain.indentRaise()
         self.init_time = datetime.datetime.now()
         return self
 
     def __exit__(self, type, value, tb):
+        logMain.indentLower()
         logMain.INFO('Finished: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
         logMain.indentLower()
 
