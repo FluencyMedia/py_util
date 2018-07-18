@@ -36,10 +36,10 @@ def dec_logEntryExit(func):
 class logDebugOverride():
     def __init__(self, funcName):
         self.funcName = funcName
-        self._currLoggingLevel = logMain.loggingLevel()
+        self._currLoggingLevel = logMain.loggingLevel
 
     def __enter__(self):
-        logMain.loggingLevel('DEBUG')
+        logMain.loggingLevel = 'DEBUG'
         logMain.indentRaise()
         logMain.DEBUG('DEBUG OVERRIDE: ' + self.funcName, padBefore=1)
         self.init_time = datetime.datetime.now()
@@ -48,7 +48,7 @@ class logDebugOverride():
     def __exit__(self, type, value, tb):
         logMain.DEBUG('FINISHED DEBUG OVERRIDE: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
         logMain.indentLower()
-        logMain.loggingLevel(self._currLoggingLevel)
+        logMain.loggingLevel = self._currLoggingLevel
 
 
 def dec_logDebugOverride(func):
