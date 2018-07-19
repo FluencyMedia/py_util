@@ -150,3 +150,6 @@ $RECYCLE.BIN/
 
 # PyCharm config
 *.idea/
+
+# HTML Output
+*html/
