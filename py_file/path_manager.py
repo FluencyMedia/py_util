@@ -1,4 +1,4 @@
-# import os
+import os
 
 from pathlib import PurePosixPath, PureWindowsPath
 
@@ -52,6 +52,7 @@ class objLoc():
         else:
             self._root = PureWindowsPath(myRoot)
         self._relpath = objPath(myPath, self.isPosix)
+        pass
 
     @property
     def isPosix(self):
@@ -75,7 +76,7 @@ class objLoc():
 
     @property
     def path(self):
-        return str(self.root.joinpath(self.relPath))
+        return os.path.join(self.root, self.relPath)
 
 
 if __name__ == "__main__":
