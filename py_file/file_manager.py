@@ -35,7 +35,7 @@ class fWriter:
         # Ensure that the corresponding destination directory exists
         os.makedirs(self._fM.absLoc, exist_ok=True)
 
-        print("     fileName: " + self._fM.fileName)
+        # print("     fileName: " + self._fM.fileName)
 
         try:
             self._fOut = open(self._fM.absPath, 'w', newline="\n")

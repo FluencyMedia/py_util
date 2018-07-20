@@ -41,12 +41,12 @@ class logDebugOverride():
     def __enter__(self):
         logMain.loggingLevel = 'DEBUG'
         logMain.indentRaise()
-        logMain.DEBUG('DEBUG OVERRIDE: ' + self.funcName, padBefore=1)
+        # logMain.DEBUG('DEBUG OVERRIDE: ' + self.funcName, padBefore=1)
         self.init_time = datetime.datetime.now()
         return self
 
     def __exit__(self, type, value, tb):
-        logMain.DEBUG('FINISHED DEBUG OVERRIDE: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
+        # logMain.DEBUG('FINISHED DEBUG OVERRIDE: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
         logMain.indentLower()
         logMain.loggingLevel = self._currLoggingLevel
 
