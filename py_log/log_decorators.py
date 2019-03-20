@@ -61,7 +61,7 @@ def dec_logDebugOverride(func):
 
 if __name__ == '__main__':
 
-    #    from py_log.logger import clsLogger
+    #    from py_log.logger import ClsLogger
 
     logMain.loggingLevel = 'DEBUG'
 

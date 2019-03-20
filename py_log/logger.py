@@ -12,9 +12,10 @@ from py_file.file_manager import fManager
 from config_main import strTimestamp
 
 
-#%% Class clsLogger
+# %% Class ClsLogger
 
-class clsLogger:
+# noinspection PyTypeChecker
+class ClsLogger:
     """
     Generates new instance of logging object
 
@@ -27,16 +28,17 @@ class clsLogger:
         loggingLevel: str
             Overrides default minimum loggingLevel of 'WARNING'
     """
-#%% Class constructor
+    # %% Class constructor
 
     _loggingLevels = {'DEBUG': 0, 'INFO': 1, 'WARNING': 2, 'ERROR': 3, 'CRITICAL': 4}
 
-    def __init__(self, **fArgs):
+    def __init__(self, **fargs):
 
-        self._properties = {}
-        self._properties['indentLevel'] = 0
-        self._properties['indentSize'] = 4
-        self._properties['consoleMirror'] = False
+        self._properties = {
+            'indentLevel': 0,
+            'indentSize': 4,
+            'consoleMirror': False
+        }
 
         self._loggingLevel = 'WARNING'
 
@@ -44,20 +46,19 @@ class clsLogger:
 
         self._fOpen = False
 
-        for fArg in fArgs:
+        for fArg in fargs:
             if fArg == 'loggingLevel':
                 if fArg['loggingLevel'] in self._loggingLevels:
-                    self._loggingLevel = self._loggingLevels[fArg['loggingLevel']]
+                    self._loggingLevel = self._loggingLevels[fArg["loggingLevel"]]
                 else:
                     raise Exception("ERROR: Attempt to set unknown Log Level: " + fArg['loggingLevel'])
             else:
-                self._properties[fArg] = fArgs[fArg]
+                self._properties[fArg] = fargs[fArg]
 
-            if 'fileName' in fArgs:
-                self.open(**fArgs)
+            if 'fileName' in fargs:
+                self.open(**fargs)
 
-
-#%% Property management functions
+    # %% Property management functions
 
     @property
     def indentLevel(self):
@@ -65,9 +66,9 @@ class clsLogger:
         return self._properties['indentLevel']
 
     @indentLevel.setter
-    def indentLevel(self, newVal: int):
+    def indentLevel(self, newval: int):
         """ Sets the current indentLevel """
-        self._properties['indentLevel'] = newVal
+        self._properties['indentLevel'] = newval
 
     @property
     def indentSize(self):
@@ -77,32 +78,32 @@ class clsLogger:
         return self._properties['indentSize']
 
     @indentSize.setter
-    def indentSize(self, newVal: int):
+    def indentSize(self, new_val: int):
         """ Sets the current indentSize """
-        self._properties['indentSize'] = newVal
+        self._properties['indentSize'] = new_val
 
     def indentRaise(self, *args):
-        intChange = 1
+        int_change = 1
         if args:
             if args[0] > 0:
-                intChange = args[0]
+                int_change = args[0]
             else:
                 raise Exception("Attempt to raise indent level: " + args[0])
-        newLevel = self.indentLevel + intChange
+        newLevel = self.indentLevel + int_change
         self.indentLevel = newLevel
 
-    def indentLower(self, intLower=None):
+    def indentLower(self, int_lower=None):
         """
         Forcefully lowers the current level of indentation
         Arguments
         ---------
-            intLower: int
+            int_lower: int
                 Optional: The number of levels by which indentation should be lowered (if not provided, =1)
         """
-        if not intLower:
+        if not int_lower:
             intChange = 1
         else:
-            intChange = abs(intLower)
+            intChange = abs(int_lower)
         if intChange > self.indentLevel:
             newLevel = 0
         else:
@@ -110,13 +111,13 @@ class clsLogger:
 
         self.indentLevel = newLevel
 
-    def writeRaise(self, strOutput=None, **kwargs):
+    def writeRaise(self, str_output=None, **kwargs):
         self.indentRaise()
-        self.write(strOutput, **kwargs)
+        self.write(str_output, **kwargs)
 
-    def writeLower(self, strOutput=None, **kwargs):
+    def writeLower(self, str_output=None, **kwargs):
         self.indentLower()
-        self.write(strOutput, **kwargs)
+        self.write(str_output, **kwargs)
 
     def indent(self, **kwargs):
         """
@@ -152,7 +153,7 @@ class clsLogger:
     def consoleMirror(self, newVal):
         self._properties['consoleMirror'] = newVal
 
-#%% File output functions
+    # %% File output functions
 
     def open(self, **kwargs):
         """
@@ -235,19 +236,19 @@ class clsLogger:
 
         strIndent = self.indent(**kwargs)
 
-        strPrefix = ""
+        str_prefix = ""
         if 'prefix' in kwargs:
-            strPrefix = kwargs['prefix'] + ": "
+            str_prefix = kwargs['prefix'] + ": "
 
-        tmpStr = ""
+        tmp_str = ""
         if strOutput is not None:
-            tmpStr = strIndent + strPrefix + strOutput
+            tmp_str = strIndent + str_prefix + strOutput
 
-        self._write(tmpStr)
+        self._write(tmp_str)
 
         try:
             if kwargs['console']:
-                print(tmpStr)
+                print(tmp_str)
         except:
             pass
 
@@ -258,84 +259,84 @@ class clsLogger:
             except:
                 pass
 
-    def _write(self, strOut=None):
+    def _write(self, str_out=None):
         if self._fOpen:
-            if strOut is not None:
-                self._fM.write(strOut)
+            if str_out is not None:
+                self._fM.write(str_out)
                 if self.consoleMirror:
-                    print(strOut)
+                    print(str_out)
             else:
                 self._fM.write()
                 if self.consoleMirror:
                     print()
         else:
-            if strOut is not None:
-                print(strOut)
+            if str_out is not None:
+                print(str_out)
             else:
                 print()
 
-#%% Logging level functions
+    # %% Logging level functions
 
     @property
     def loggingLevel(self):
         return self._loggingLevel
 
     @loggingLevel.setter
-    def loggingLevel(self, newVal):
+    def loggingLevel(self, new_val):
         # Check to see if an argument has been passed
-        if newVal in self._loggingLevels:
+        if new_val in self._loggingLevels:
             # If it is in the list, set this instance's new minimal logging threshold to the new value
-            self._loggingLevel = newVal
+            self._loggingLevel = new_val
         else:
             # If it's not in the list, raise and exception
-            raise Exception("ERROR: Attempt to set log level to: " + newVal)
+            raise Exception("ERROR: Attempt to set log level to: " + new_val)
 
-    def _lWrite(self, myLevel, strOut=None, *args, **kwargs):
-        if strOut is not None:
-            if self._loggingLevels[myLevel] >= self._loggingLevels[self._loggingLevel]:
-                self.write(strOut, *args, **kwargs, prefix=myLevel)
+    def _lWrite(self, my_level, str_out=None, *args, **kwargs):
+        if str_out is not None:
+            if self._loggingLevels[my_level] >= self._loggingLevels[self._loggingLevel]:
+                self.write(str_out, *args, **kwargs, prefix=my_level)
 
-    def DEBUG(self, strOut=None, *args, **kwargs):
+    def DEBUG(self, str_out=None, *args, **kwargs):
         """
         Will only log arguments at logging level:
             'DEBUG'
         """
-        self._lWrite('DEBUG', strOut, *args, **kwargs)
+        self._lWrite('DEBUG', str_out, *args, **kwargs)
 
-    def INFO(self, strOut=None, *args, **kwargs):
+    def INFO(self, str_out=None, *args, **kwargs):
         """
         Will log arguments at logging levels:
             'DEBUG', 'INFO'
         """
-        self._lWrite('INFO', strOut, *args, **kwargs)
+        self._lWrite('INFO', str_out, *args, **kwargs)
 
-    def WARNING(self, strOut=None, *args, **kwargs):
+    def WARNING(self, str_out=None, *args, **kwargs):
         """
         Will log arguments at logging levels:
             'DEBUG', 'INFO', 'WARNING'
         """
-        self._lWrite('WARNING', strOut, *args, **kwargs)
+        self._lWrite('WARNING', str_out, *args, **kwargs)
 
-    def ERROR(self, strOut=None, *args, **kwargs):
+    def ERROR(self, str_out=None, *args, **kwargs):
         """
         Will log arguments at logging levels:
             'DEBUG', 'INFO', 'WARNING', 'ERROR'
         """
-        self._lWrite('ERROR', strOut, *args, **kwargs)
+        self._lWrite('ERROR', str_out, *args, **kwargs)
 
-    def CRITICAL(self, strOut=None, *args, **kwargs):
+    def CRITICAL(self, str_out=None, *args, **kwargs):
         """
         Will cause arguments to be logged at all logging levels:
             'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
         """
-        self._lWrite('CRITICAL', strOut, *args, **kwargs)
+        self._lWrite('CRITICAL', str_out, *args, **kwargs)
 
 
-#%% Shared objects
+# %% Shared objects
 
-logMain = clsLogger()
+logMain = ClsLogger()
 
-#%% Unit tests
+# %% Unit tests
 
 if __name__ == '__main__':
 
@@ -343,12 +344,11 @@ if __name__ == '__main__':
     testLevels = False
     testStress = False
 
-
-#%% Base tests
+    # %% Base tests
 
     if testBase:
-        #        tmpLogger = clsLogger(fileName = "log-test", fileExt = "log")
-        tmpLogger = clsLogger()
+        #        tmpLogger = ClsLogger(fileName = "log-test", fileExt = "log")
+        tmpLogger = ClsLogger()
         tmpLogger.write()
         tmpLogger.write('Testing')
         tmpLogger.write('Indent 01', indentLevel=1)
@@ -361,10 +361,10 @@ if __name__ == '__main__':
         tmpLogger.indentSize = 10
         tmpLogger.write('Testing Level 03')
 
-#%% Logging level tests
+    # %% Logging level tests
 
     if testLevels:
-        tmpLogger = clsLogger(fileName="log-test", fileExt="log")
+        tmpLogger = ClsLogger(fileName="log-test", fileExt="log")
 
         tmpLogger.DEBUG("Test")
         tmpLogger.INFO("Test")
@@ -380,8 +380,7 @@ if __name__ == '__main__':
         tmpLogger.ERROR("Test")
         tmpLogger.CRITICAL("Test")
 
-
-#%% Stress tests
+    # %% Stress tests
 
     if testStress:
         pass
