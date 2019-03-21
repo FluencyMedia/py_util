@@ -9,7 +9,7 @@ Created on Mon Sep 26 19:08:00 2016
 import pandas as pd
 
 from py_log.logger import logMain
-# from py_log.log_decorators import  dec_logEntryExit  # , dec_logDebugOverride
+# from py_log.log_decorators import  dec_log_entry_exit  # , dec_log_debug_override
 
 from path_manager import objLoc
 
@@ -141,8 +141,8 @@ locManager = objLocMgr(pd.read_csv(urlPaths.url, **urlPaths.kwargs), urlDevices,
 if __name__ == "__main__":
 
     logMain.open(fileName='log-loc-mgr.log')
-    logMain.loggingLevel = "INFO"
-    logMain.consoleMirror = True
+    logMain.logging_level = "INFO"
+    logMain.console_mirror = True
 
     framePaths = locManager.dataFrame
     fieldsPaths = locManager.fields
@@ -152,8 +152,8 @@ if __name__ == "__main__":
         locManager.env = e
         logMain.INFO("Device: " + locManager.device)
         logMain.INFO("Environment: " + locManager.env, padBefore=1)
-        logMain.indentRaise()
+        logMain.indent_raise()
         logMain.INFO("Device Path: " + locManager.absLoc)
         for l in locManager.locations:
             logMain.INFO("'" + l + "': " + locManager.path(l))
-        logMain.indentLower()
+        logMain.indent_lower()

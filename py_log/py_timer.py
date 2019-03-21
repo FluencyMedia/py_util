@@ -9,8 +9,8 @@ from py_log.logger import logMain
 
 if __name__ == "__main__":
     logMain.open(fileName='py_timer')
-    logMain.loggingLevel = "INFO"
-    logMain.consoleMirror = True
+    logMain.logging_level = "INFO"
+    logMain.console_mirror = True
 
     testUnits = {}
     testUnits['py_timer'] = True

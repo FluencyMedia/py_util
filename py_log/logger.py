@@ -21,23 +21,24 @@ class ClsLogger:
 
     Optional Attributes
     -------------------
-        indentLevel: int
+        indent_level: int
             Overrides default indentation level of 0
-        indentSize: int
+        indent_size: int
             Overrides default indentation size of 4 spaces
-        loggingLevel: str
-            Overrides default minimum loggingLevel of 'WARNING'
+        logging_level: str
+            Overrides default minimum logging_level of 'WARNING'
     """
     # %% Class constructor
 
-    _loggingLevels = {'DEBUG': 0, 'INFO': 1, 'WARNING': 2, 'ERROR': 3, 'CRITICAL': 4}
+    _loggingLevels = {'DEBUG': 0, 'INFO': 1, 'WARNING': 2,
+                      'ERROR': 3, 'CRITICAL': 4}
 
     def __init__(self, **fargs):
 
         self._properties = {
-            'indentLevel': 0,
-            'indentSize': 4,
-            'consoleMirror': False
+            'indent_level': 0,
+            'indent_size': 4,
+            'console_mirror': False
         }
 
         self._loggingLevel = 'WARNING'
@@ -47,11 +48,11 @@ class ClsLogger:
         self._fOpen = False
 
         for fArg in fargs:
-            if fArg == 'loggingLevel':
-                if fArg['loggingLevel'] in self._loggingLevels:
-                    self._loggingLevel = self._loggingLevels[fArg["loggingLevel"]]
+            if fArg == 'logging_level':
+                if fArg['logging_level'] in self._loggingLevels:
+                    self._loggingLevel = self._loggingLevels[fArg["logging_level"]]
                 else:
-                    raise Exception("ERROR: Attempt to set unknown Log Level: " + fArg['loggingLevel'])
+                    raise Exception("ERROR: Attempt to set unknown Log Level: " + fArg['logging_level'])
             else:
                 self._properties[fArg] = fargs[fArg]
 
@@ -61,38 +62,38 @@ class ClsLogger:
     # %% Property management functions
 
     @property
-    def indentLevel(self):
-        """ Returns the current indentLevel """
-        return self._properties['indentLevel']
+    def indent_level(self):
+        """ Returns the current indent_level """
+        return self._properties['indent_level']
 
-    @indentLevel.setter
-    def indentLevel(self, newval: int):
-        """ Sets the current indentLevel """
-        self._properties['indentLevel'] = newval
+    @indent_level.setter
+    def indent_level(self, newval: int):
+        """ Sets the current indent_level """
+        self._properties['indent_level'] = newval
 
     @property
-    def indentSize(self):
+    def indent_size(self):
         """
-        Assigns or returns the current indentSize
+        Assigns or returns the current indent_size
         """
-        return self._properties['indentSize']
+        return self._properties['indent_size']
 
-    @indentSize.setter
-    def indentSize(self, new_val: int):
-        """ Sets the current indentSize """
-        self._properties['indentSize'] = new_val
+    @indent_size.setter
+    def indent_size(self, new_val: int):
+        """ Sets the current indent_size """
+        self._properties['indent_size'] = new_val
 
-    def indentRaise(self, *args):
+    def indent_raise(self, *args):
         int_change = 1
         if args:
             if args[0] > 0:
                 int_change = args[0]
             else:
                 raise Exception("Attempt to raise indent level: " + args[0])
-        newLevel = self.indentLevel + int_change
-        self.indentLevel = newLevel
+        new_level = self.indent_level + int_change
+        self.indent_level = new_level
 
-    def indentLower(self, int_lower=None):
+    def indent_lower(self, int_lower=None):
         """
         Forcefully lowers the current level of indentation
         Arguments
@@ -101,22 +102,22 @@ class ClsLogger:
                 Optional: The number of levels by which indentation should be lowered (if not provided, =1)
         """
         if not int_lower:
-            intChange = 1
+            int_change = 1
         else:
-            intChange = abs(int_lower)
-        if intChange > self.indentLevel:
-            newLevel = 0
+            int_change = abs(int_lower)
+        if int_change > self.indent_level:
+            new_level = 0
         else:
-            newLevel = self.indentLevel - intChange
+            new_level = self.indent_level - int_change
 
-        self.indentLevel = newLevel
+        self.indent_level = new_level
 
-    def writeRaise(self, str_output=None, **kwargs):
-        self.indentRaise()
+    def write_raise(self, str_output=None, **kwargs):
+        self.indent_raise()
         self.write(str_output, **kwargs)
 
-    def writeLower(self, str_output=None, **kwargs):
-        self.indentLower()
+    def write_lower(self, str_output=None, **kwargs):
+        self.indent_lower()
         self.write(str_output, **kwargs)
 
     def indent(self, **kwargs):
@@ -131,27 +132,27 @@ class ClsLogger:
             Temporarily overrides the current indentation size
         """
         if 'myLevel' in kwargs:
-            indLevel = kwargs['myLevel']
+            ind_level = kwargs['myLevel']
         else:
-            indLevel = self._properties['indentLevel']
+            ind_level = self._properties['indent_level']
 
         if 'mySize' in kwargs:
-            indSize = kwargs['mySize']
+            ind_size = kwargs['mySize']
         else:
-            indSize = self._properties['indentSize']
+            ind_size = self._properties['indent_size']
 
-        intIndent = indLevel * indSize
+        int_indent = ind_level * ind_size
 
-        return (" " * intIndent)
+        return " " * int_indent
 
     @property
-    def consoleMirror(self):
+    def console_mirror(self):
         """Sets a fixed boolean state for whether log output is mirrored to the console"""
-        return self._properties['consoleMirror']
+        return self._properties['console_mirror']
 
-    @consoleMirror.setter
-    def consoleMirror(self, newVal):
-        self._properties['consoleMirror'] = newVal
+    @console_mirror.setter
+    def console_mirror(self, new_val):
+        self._properties['console_mirror'] = new_val
 
     # %% File output functions
 
@@ -171,19 +172,19 @@ class ClsLogger:
         if not self._fOpen:
 
             if "root" in kwargs:
-                myRoot = kwargs['root']
+                my_root = kwargs['root']
             else:
-                myRoot = os.getcwd()
+                my_root = os.getcwd()
             if "relLoc" in kwargs:
-                myRelLoc = kwargs['relLoc']
+                my_rel_loc = kwargs['relLoc']
             else:
-                myRelLoc = "logs\\"
+                my_rel_loc = "logs\\"
 
             print("Attempting to open file")
-            print("     myRoot: " + str(myRoot))
-            print("     myRelLoc: " + str(myRelLoc))
+            print("     my_root: " + str(my_root))
+            print("     my_rel_loc: " + str(my_rel_loc))
             try:
-                self._fM = fManager(myRoot, myRelLoc, **kwargs)
+                self._fM = fManager(my_root, my_rel_loc, **kwargs)
             except:
                 print("ERROR: COULD NOT OPEN FILE")
                 for kwarg in kwargs:
@@ -194,16 +195,16 @@ class ClsLogger:
                 if 'strHeader' in kwargs:
                     self.write(kwargs['strHeader'])
                 self._fOpen = True
-                if not 'useHeader' in kwargs:
+                if 'useHeader' not in kwargs:
                     self.write("INITIATING LOG OUTPUT: " + self._currTime, padBefore=1, padAfter=1, console=True)
                 else:
                     if kwargs['useHeader'] == "True":
                         self.write("INITIATING LOG OUTPUT: " + self._currTime, padBefore=1, padAfter=1, console=True)
 
-    def write(self, strOutput=None, **kwargs):
+    def write(self, str_output=None, **kwargs):
         """
         Outputs one line directly to the log file, under the following conditions:
-            - Prints directly to the log, without checking the current 'loggingLevel' threshold
+            - Prints directly to the log, without checking the current 'logging_level' threshold
             - Prints at the current indentation level (unless overridden with optional args)
 
         Optional Arguments
@@ -212,7 +213,7 @@ class ClsLogger:
             Cause x number of blank lines to be output before or after the current line is output
         console: boolean
             Causes the current line to also be printed to the console
-        indentLevel, indentSize: int
+        indent_level, indent_size: int
             Locally override those settings for the current line
         prefix: str
             Will be added to the beginning of the current line before output, followed by ": "
@@ -225,24 +226,24 @@ class ClsLogger:
             except:
                 pass
 
-        if 'indentLevel' in kwargs:
-            self.indentLevel = kwargs['indentLevel']
+        if 'indent_level' in kwargs:
+            self.indent_level = kwargs['indent_level']
 
-        if 'indentSize' in kwargs:
-            self.indentSize = kwargs['indentSize']
+        if 'indent_size' in kwargs:
+            self.indent_size = kwargs['indent_size']
 
-        if 'consoleMirror' in kwargs:
-            self.consoleMirror = kwargs['consoleMirror']
+        if 'console_mirror' in kwargs:
+            self.console_mirror = kwargs['console_mirror']
 
-        strIndent = self.indent(**kwargs)
+        str_indent = self.indent(**kwargs)
 
         str_prefix = ""
         if 'prefix' in kwargs:
             str_prefix = kwargs['prefix'] + ": "
 
         tmp_str = ""
-        if strOutput is not None:
-            tmp_str = strIndent + str_prefix + strOutput
+        if str_output is not None:
+            tmp_str = str_indent + str_prefix + str_output
 
         self._write(tmp_str)
 
@@ -263,11 +264,11 @@ class ClsLogger:
         if self._fOpen:
             if str_out is not None:
                 self._fM.write(str_out)
-                if self.consoleMirror:
+                if self.console_mirror:
                     print(str_out)
             else:
                 self._fM.write()
-                if self.consoleMirror:
+                if self.console_mirror:
                     print()
         else:
             if str_out is not None:
@@ -278,11 +279,11 @@ class ClsLogger:
     # %% Logging level functions
 
     @property
-    def loggingLevel(self):
+    def logging_level(self):
         return self._loggingLevel
 
-    @loggingLevel.setter
-    def loggingLevel(self, new_val):
+    @logging_level.setter
+    def logging_level(self, new_val):
         # Check to see if an argument has been passed
         if new_val in self._loggingLevels:
             # If it is in the list, set this instance's new minimal logging threshold to the new value
@@ -291,45 +292,50 @@ class ClsLogger:
             # If it's not in the list, raise and exception
             raise Exception("ERROR: Attempt to set log level to: " + new_val)
 
-    def _lWrite(self, my_level, str_out=None, *args, **kwargs):
+    def _lwrite(self, my_level, str_out=None, *args, **kwargs):
         if str_out is not None:
             if self._loggingLevels[my_level] >= self._loggingLevels[self._loggingLevel]:
                 self.write(str_out, *args, **kwargs, prefix=my_level)
 
+    # noinspection PyPep8Naming
     def DEBUG(self, str_out=None, *args, **kwargs):
         """
         Will only log arguments at logging level:
             'DEBUG'
         """
-        self._lWrite('DEBUG', str_out, *args, **kwargs)
+        self._lwrite('DEBUG', str_out, *args, **kwargs)
 
+    # noinspection PyPep8Naming
     def INFO(self, str_out=None, *args, **kwargs):
         """
         Will log arguments at logging levels:
             'DEBUG', 'INFO'
         """
-        self._lWrite('INFO', str_out, *args, **kwargs)
+        self._lwrite('INFO', str_out, *args, **kwargs)
 
+    # noinspection PyPep8Naming
     def WARNING(self, str_out=None, *args, **kwargs):
         """
         Will log arguments at logging levels:
             'DEBUG', 'INFO', 'WARNING'
         """
-        self._lWrite('WARNING', str_out, *args, **kwargs)
+        self._lwrite('WARNING', str_out, *args, **kwargs)
 
+    # noinspection PyPep8Naming
     def ERROR(self, str_out=None, *args, **kwargs):
         """
         Will log arguments at logging levels:
             'DEBUG', 'INFO', 'WARNING', 'ERROR'
         """
-        self._lWrite('ERROR', str_out, *args, **kwargs)
+        self._lwrite('ERROR', str_out, *args, **kwargs)
 
+    # noinspection PyPep8Naming
     def CRITICAL(self, str_out=None, *args, **kwargs):
         """
         Will cause arguments to be logged at all logging levels:
             'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
         """
-        self._lWrite('CRITICAL', str_out, *args, **kwargs)
+        self._lwrite('CRITICAL', str_out, *args, **kwargs)
 
 
 # %% Shared objects
@@ -356,9 +362,9 @@ if __name__ == '__main__':
         tmpLogger.write('Testing Level 02')
         tmpLogger.write('Testing Temp Level', myLevel=0)
         tmpLogger.write('Testing Level 02')
-        tmpLogger.indentLevel = 3
+        tmpLogger.indent_level = 3
         tmpLogger.write('Testing Level 03')
-        tmpLogger.indentSize = 10
+        tmpLogger.indent_size = 10
         tmpLogger.write('Testing Level 03')
 
     # %% Logging level tests
@@ -372,7 +378,7 @@ if __name__ == '__main__':
         tmpLogger.ERROR("Test")
         tmpLogger.CRITICAL("Test")
 
-        tmpLogger.write("New Threshold: " + tmpLogger.loggingLevel('DEBUG'), padBefore=1, padAfter=1)
+        tmpLogger.write("New Threshold: " + tmpLogger.logging_level('DEBUG'), padBefore=1, padAfter=1)
 
         tmpLogger.DEBUG("Test")
         tmpLogger.INFO("Test")

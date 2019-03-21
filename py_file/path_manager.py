@@ -2,14 +2,14 @@ import os
 
 from pathlib import PurePosixPath, PureWindowsPath
 
-# from py_log.log_decorators import dec_logEntryExit
+# from py_log.log_decorators import dec_log_entry_exit
 
 
 def isPosixPath(myPath):
     return ("/" in str(myPath))
 
 
-# @dec_logEntryExit
+# @dec_log_entry_exit
 class objPath():
     def __init__(self, myPath, isPosix=False):
         self._isPosix = isPosix
@@ -37,13 +37,13 @@ class objPath():
             self._parts = PureWindowsPath(newPath).parts
 
         # logMain.DEBUG(("New Path Assigned: " + newPath), padBefore=1)
-        # logMain.indentRaise()
+        # logMain.indent_raise()
         # for p in self._parts:
         #     logMain.DEBUG(p)
-        # logMain.indentLower()
+        # logMain.indent_lower()
 
 
-# @dec_logEntryExit
+# @dec_log_entry_exit
 class objLoc():
     def __init__(self, myRoot, myPath):
         self._isPosix = isPosixPath(myRoot)
@@ -84,8 +84,8 @@ if __name__ == "__main__":
     from py_log.logger import logMain
 
     # logMain.open(fileName='path-log')
-    logMain.consoleMirror = True
-    logMain.loggingLevel = 'DEBUG'
+    logMain.console_mirror = True
+    logMain.logging_level = 'DEBUG'
 
     testUnits = {}
     testUnits['baseTest'] = False
@@ -101,7 +101,7 @@ if __name__ == "__main__":
         logMain.INFO("Output Path: " + tmpPath.path)
 
     if testUnits['multiTest']:
-        # @dec_logEntryExit
+        # @dec_log_entry_exit
         def testPath(strRoot, strLoc):
             """
             Tests various flavors of base string

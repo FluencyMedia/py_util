@@ -9,13 +9,13 @@ import requests
 import codecs
 
 from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
 #%% Input routines
 
 
-@dec_logEntryExit
+@dec_log_entry_exit
 def dictify(lstSource, keyPrimary, **kwargs):
     newDict = {}
     strSplit = ','
@@ -48,7 +48,7 @@ def dictify(lstSource, keyPrimary, **kwargs):
     return newDict
 
 
-@dec_logEntryExit
+@dec_log_entry_exit
 def loadSheet(srcUrl, keyPrimary, *args, **kwargs):
     """
     Loads table from Google Spreadsheet

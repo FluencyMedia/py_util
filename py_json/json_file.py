@@ -8,10 +8,10 @@ Created on 2017-06-16T21:04:37.594Z
 import json
 
 from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
-@dec_logEntryExit
+@dec_log_entry_exit
 def getJSONFile(srcPathJSON, srcFilename):  # , destPages, strTimestamp):
 
     # Assumes all input files are one directory level down
@@ -23,8 +23,8 @@ def getJSONFile(srcPathJSON, srcFilename):  # , destPages, strTimestamp):
 
 if __name__ == '__main__':
     logMain.open(fileName='json-file')
-    logMain.loggingLevel = "INFO"
-    logMain.consoleMirror = True
+    logMain.logging_level = "INFO"
+    logMain.console_mirror = True
 
     testUnits = {}
     testUnits['testFileIn'] = True

@@ -142,8 +142,6 @@ $RECYCLE.BIN/
 *test*/
 # *log*/
 *sample*/
-*.log
-
 # Spyder files
 *.spyder*
 *spyder*/
@@ -153,3 +151,6 @@ $RECYCLE.BIN/
 
 # HTML Output
 *html/
+
+# Visual Studio Code files
+.vscode/

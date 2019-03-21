@@ -8,13 +8,13 @@ Created on Wed Sep  7 09:20:29 2016
 import os
 
 from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
 #%% File traversal modules
 
 
-@dec_logEntryExit
+@dec_log_entry_exit
 def pathWalk(currFunct, currPath, *args, **kwargs):
     """
     Traverses all directories and files within a designated location, applying a specific function
@@ -64,5 +64,5 @@ def pathWalk(currFunct, currPath, *args, **kwargs):
 if __name__ == '__main__':
 
     logMain.open('log-path')
-    logMain.consoleMirror = True
-    logMain.loggingLevel = "INFO"
+    logMain.console_mirror = True
+    logMain.logging_level = "INFO"
