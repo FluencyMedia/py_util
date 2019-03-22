@@ -15,14 +15,17 @@ class EnterExitLog:
 
     def __enter__(self):
         logMain.indent_raise()
-        logMain.INFO('Started: ' + self.funcName)
+        logMain.INFO("Started: " + self.funcName)
         logMain.indent_raise()
         self.init_time = datetime.datetime.now()
         return self
 
     def __exit__(self, type, value, tb):
         logMain.indent_lower()
-        logMain.INFO('Finished: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
+        logMain.INFO(
+            "Finished: %s in: %s seconds"
+            % (self.funcName, datetime.datetime.now() - self.init_time)
+        )
         logMain.indent_lower()
 
 
@@ -40,7 +43,7 @@ class LogDebugOverride:
         self._currLoggingLevel = logMain.logging_level
 
     def __enter__(self):
-        logMain.logging_level = 'DEBUG'
+        logMain.logging_level = "DEBUG"
         logMain.indent_raise()
         # logMain.DEBUG('DEBUG OVERRIDE: ' + self.funcName, padBefore=1)
         self.init_time = datetime.datetime.now()
@@ -61,11 +64,11 @@ def dec_log_debug_override(func):
     return func_wrapper
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     #    from py_log.logger import ClsLogger
 
-    logMain.logging_level = 'DEBUG'
+    logMain.logging_level = "DEBUG"
 
     @dec_log_entry_exit
     def test_func():
