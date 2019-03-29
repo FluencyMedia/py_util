@@ -17,15 +17,16 @@ from oauth2client import tools
 
 try:
     import argparse
+
     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 except ImportError:
     flags = None
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/sheets.googleapis.com-python-quickstart.json
-SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Google Sheets API Python Quickstart'
+SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly"
+CLIENT_SECRET_FILE = "client_secret.json"
+APPLICATION_NAME = "Google Sheets API Python Quickstart"
 
 
 def get_credentials():
@@ -37,12 +38,13 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
+    home_dir = os.path.expanduser("~")
+    credential_dir = os.path.join(home_dir, ".credentials")
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'sheets.googleapis.com-python-quickstart.json')
+    credential_path = os.path.join(
+        credential_dir, "sheets.googleapis.com-python-quickstart.json"
+    )
 
     store = oauth2client.file.Storage(credential_path)
     credentials = store.get()
@@ -53,7 +55,7 @@ def get_credentials():
             credentials = tools.run_flow(flow, store, flags)
         else:  # Needed only for compatibility with Python 2.6
             credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
+        print("Storing credentials to " + credential_path)
     return credentials
 
 
@@ -66,25 +68,29 @@ def main():
     """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
-    discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
-                    'version=v4')
-    service = discovery.build('sheets', 'v4', http=http,
-                              discoveryServiceUrl=discoveryUrl)
+    discoveryUrl = "https://sheets.googleapis.com/$discovery/rest?" "version=v4"
+    service = discovery.build(
+        "sheets", "v4", http=http, discoveryServiceUrl=discoveryUrl
+    )
 
-    spreadsheetId = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-    rangeName = 'Class Data!A2:E'
-    result = service.spreadsheets().values().get(
-        spreadsheetId=spreadsheetId, range=rangeName).execute()
-    values = result.get('values', [])
+    spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+    rangeName = "Class Data!A2:E"
+    result = (
+        service.spreadsheets()
+        .values()
+        .get(spreadsheetId=spreadsheetId, range=rangeName)
+        .execute()
+    )
+    values = result.get("values", [])
 
     if not values:
-        print('No data found.')
+        print("No data found.")
     else:
-        print('Name, Major:')
+        print("Name, Major:")
         for row in values:
             # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[4]))
+            print("%s, %s" % (row[0], row[4]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

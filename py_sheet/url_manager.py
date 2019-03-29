@@ -6,10 +6,10 @@ Created on Fri Sep 23 14:02:59 2016
 """
 
 from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
-@dec_logEntryExit
+@dec_log_entry_exit
 class urlHandler():
     """
     Handles components of the URL that points to a given Google Sheet
@@ -26,7 +26,7 @@ class urlHandler():
 
     def __init__(self, sheetInfo):
         logMain.INFO("Sheet Details:")
-        logMain.indentRaise
+        logMain.indent_raise
         self._sheetID = sheetInfo[0]
         logMain.INFO('Sheet ID: ' + self._sheetID)
         self._tabID = sheetInfo[1]
@@ -34,11 +34,11 @@ class urlHandler():
         self._kwargs = sheetInfo[2]
         if self.kwargs:
             logMain.INFO("KW Arguments")
-            logMain.indentRaise
+            logMain.indent_raise
             for kw in self.kwargs:
                 logMain.INFO(kw + ": " + str(self.kwargs[kw]))
-            logMain.indentLower
-        logMain.indentLower
+            logMain.indent_lower
+        logMain.indent_lower
 
     @property
     def url(self):
@@ -81,8 +81,8 @@ listURLs['urlMap'] = ['1koHUvWRovwoW53nclnkYnLTUze4G9aEXL_fYkRJVhcc',
 if __name__ == '__main__':
 
     logMain.open(fileName='obj_url')
-    logMain.consoleMirror = True
-    logMain.loggingLevel = 'INFO'
+    logMain.console_mirror = True
+    logMain.logging_level = 'INFO'
 
     testUnits = {}
 

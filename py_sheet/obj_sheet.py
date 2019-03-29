@@ -11,10 +11,10 @@ from py_frame.frame_manager import objFrame
 from py_sheet.url_manager import urlHandler
 
 from py_log.logger import logMain
-# from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+# from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
-# @dec_logEntryExit
+# @dec_log_entry_exit
 class objSheet(objFrame):
     """
     Handles base 'objSheet' dataFrames that are acquired directly from Google Sheets
@@ -34,11 +34,11 @@ class objSheet(objFrame):
     def __init__(self, sheetInfo, *args, **kwargs):
         super().__init__(*args, **kwargs)
         logMain.INFO("Constructing objSheet")
-        logMain.indentRaise
+        logMain.indent_raise
         self._urlHandler = urlHandler(sheetInfo)
         # self._dataTable = pd.read_csv(self.url, **sheetInfo[2])
         # #TODO: This is a really sloppy fix
-        logMain.indentLower
+        logMain.indent_lower
 
     @property
     def url(self):
@@ -63,8 +63,8 @@ if __name__ == '__main__':
     from py_util.url_manager import listURLs
 
     logMain.open(fileName='obj_sheet')
-    logMain.consoleMirror = True
-    logMain.loggingLevel = 'INFO'
+    logMain.console_mirror = True
+    logMain.logging_level = 'INFO'
 
     testUnits = {}
 

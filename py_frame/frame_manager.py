@@ -9,7 +9,7 @@ import pandas as pd
 from py_sheet.url_manager import urlHandler
 
 from py_log.logger import logMain
-# from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+# from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
 class objSeries(pd.Series):
@@ -30,7 +30,7 @@ class objFrame():
     def __init__(self, myDF, *args, **kwargs):
         # self._query = ""
         logMain.INFO("Constructing objFrame")
-        logMain.indentRaise
+        logMain.indent_raise
 
         self._dataFrame = myDF
         self.dataFrame.columns = self.dataFrame.columns.map(lambda x: x.replace(' ', '_'))
@@ -38,7 +38,7 @@ class objFrame():
         self.dataFrame.columns = self.dataFrame.columns.map(lambda x: x.replace(')', ''))
         self.dataFrame.columns = self.dataFrame.columns.map(lambda x: x.replace('?', ''))
 
-        logMain.indentLower
+        logMain.indent_lower
 
     @property
     def dataFrame(self):
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     if testUnits['propQuery']:
         logMain.write('Testing Query Property', consoleMirror=True, padAfter=2)
-        logMain.indentRaise()
+        logMain.indent_raise()
         logMain.write('Current Query: ' + frameDA.query)
         frameDA.query = 'Code in ["CANCER", "ORTHO"] and Content_Type in ["Condition", "Treatment"]'
         logMain.write('Current Query: ' + frameDA.query)

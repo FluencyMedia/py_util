@@ -8,23 +8,23 @@ Created on Wed Sep  7 09:20:29 2016
 import os
 
 from py_log.logger import logMain
-from py_log.log_decorators import dec_logEntryExit  # , dec_logDebugOverride
+from py_log.log_decorators import dec_log_entry_exit  # , dec_log_debug_override
 
 
-#%% File traversal modules
+# %% File traversal modules
 
 
-@dec_logEntryExit
-def pathWalk(currFunct, currPath, *args, **kwargs):
+@dec_log_entry_exit
+def path_walk(curr_func, curr_path: str, *args, **kwargs):
     """
-    Traverses all directories and files within a designated location, applying a specific function
+    Traverses all directories and files within a designated location, applying a specific function.
 
     Required Arguments
     ------------------
-    currFunct: function
+    curr_func: function
     The function that will be applied to each file that is traversed
 
-    currPath: string
+    curr_path: string
     Absolute path to the directory that is meant to have its contents traversed
 
     Passthrough Arguments
@@ -32,37 +32,38 @@ def pathWalk(currFunct, currPath, *args, **kwargs):
     *args and **kwargs will be passed through to the applied function
     """
 
-    currStruct = os.walk(currPath)
+    curr_struct = os.walk(curr_path)
 
-    for root, dirs, files in currStruct:
-        for dir in dirs:
-            if dir[0] == '.':
-                dirs.remove(dir)
-            elif dir[:2] == '__':
-                dirs.remove(dir)
-            elif dir[:3] == 'ZZZ':
-                dirs.remove(dir)
+    for root, dirs, files in curr_struct:
+        for d in dirs:
+            if d[0] == ".":
+                dirs.remove(d)
+            elif d[:2] == "__":
+                dirs.remove(d)
+            elif d[:3] == "ZZZ":
+                dirs.remove(d)
             for file in files:
-                if file[0] == '.':
+                if file[0] == ".":
                     files.remove(file)
-                elif '.ini' in file:
+                elif ".ini" in file:
                     files.remove(file)
-        currRelPath = root.replace(currPath, '') + '\\'
+        curr_rel_path = root.replace(curr_path, "") + "\\"
 
-        logMain.INFO("Processing: " + currRelPath, padBefore=2, padAfter=1)
-        print("Processing: " + currRelPath)
+        logMain.INFO("Processing: " + curr_rel_path, padBefore=2, padAfter=1)
+        print("Processing: " + curr_rel_path)
 
         logMain.DEBUG("Current Root" + os.path.basename(root))
         for currFile in files:
-            currFunct(currRelPath, currFile, *args, **kwargs)
+            curr_func(curr_rel_path, currFile, *args, **kwargs)
 
     return
 
-#%% Main module
+
+# %% Main module
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    logMain.open('log-path')
-    logMain.consoleMirror = True
-    logMain.loggingLevel = "INFO"
+    logMain.open("log-path")
+    logMain.console_mirror = True
+    logMain.logging_level = "INFO"

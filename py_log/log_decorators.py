@@ -6,26 +6,31 @@ Created on Mon Sep  5 12:28:14 2016
 """
 
 import datetime
+
 from py_log.logger import logMain
 
 
-class EnterExitLog():
-    def __init__(self, funcName):
-        self.funcName = funcName
+class EnterExitLog:
+    def __init__(self, func_name):
+        self.funcName = func_name
 
     def __enter__(self):
-        logMain.indentRaise()
-        logMain.INFO('Started: ' + self.funcName)
-        logMain.indentRaise()
+        logMain.indent_raise()
+        logMain.INFO("Started: " + self.funcName)
+        logMain.indent_raise()
         self.init_time = datetime.datetime.now()
         return self
 
     def __exit__(self, type, value, tb):
-        logMain.indentLower()
-        logMain.INFO('Finished: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
-        logMain.indentLower()
+        logMain.indent_lower()
+        logMain.INFO(
+            "Finished: %s in: %s seconds"
+            % (self.funcName, datetime.datetime.now() - self.init_time)
+        )
+        logMain.indent_lower()
 
-def dec_logEntryExit(func):
+
+def dec_log_entry_exit(func):
     def func_wrapper(*args, **kwargs):
         with EnterExitLog(func.__name__):
             return func(*args, **kwargs)
@@ -33,40 +38,40 @@ def dec_logEntryExit(func):
     return func_wrapper
 
 
-class logDebugOverride():
-    def __init__(self, funcName):
-        self.funcName = funcName
-        self._currLoggingLevel = logMain.loggingLevel
+class LogDebugOverride:
+    def __init__(self, func_name):
+        self.funcName = func_name
+        self._currLoggingLevel = logMain.logging_level
 
     def __enter__(self):
-        logMain.loggingLevel = 'DEBUG'
-        logMain.indentRaise()
+        logMain.logging_level = "DEBUG"
+        logMain.indent_raise()
         # logMain.DEBUG('DEBUG OVERRIDE: ' + self.funcName, padBefore=1)
         self.init_time = datetime.datetime.now()
         return self
 
     def __exit__(self, type, value, tb):
-        # logMain.DEBUG('FINISHED DEBUG OVERRIDE: %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
-        logMain.indentLower()
-        logMain.loggingLevel = self._currLoggingLevel
+        # logMain.DEBUG('FINISHED DEBUG OVERRIDE:
+        #                %s in: %s seconds' % (self.funcName, datetime.datetime.now() - self.init_time))
+        logMain.indent_lower()
+        logMain.logging_level = self._currLoggingLevel
 
 
-def dec_logDebugOverride(func):
+def dec_log_debug_override(func):
     def func_wrapper(*args, **kwargs):
-        with logDebugOverride(func.__name__):
+        with LogDebugOverride(func.__name__):
             return func(*args, **kwargs)
 
     return func_wrapper
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    #    from py_log.logger import ClsLogger
 
-    #    from py_log.logger import clsLogger
+    logMain.logging_level = "DEBUG"
 
-    logMain.loggingLevel = 'DEBUG'
-
-    @dec_logEntryExit
-    def testFunc():
+    @dec_log_entry_exit
+    def test_func():
         print("TESTING")
 
-    testFunc()
+    test_func()
