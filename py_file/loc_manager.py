@@ -9,6 +9,7 @@ Created on Mon Sep 26 19:08:00 2016
 import pandas as pd
 
 from py_log.logger import logMain
+
 # from py_log.log_decorators import  dec_log_entry_exit  # , dec_log_debug_override
 
 from path_manager import objLoc
@@ -18,14 +19,18 @@ from py_frame.frame_manager import objFrame
 
 from py_dev import myDevice
 
-recPaths = ['1j-ic8K3ijarZR_fiKChPzpoiYeIZW6ZejvL94-u70H4',
-            '329635327',
-            {'index_col': 'Channel'}]
+recPaths = [
+    "1j-ic8K3ijarZR_fiKChPzpoiYeIZW6ZejvL94-u70H4",
+    "329635327",
+    {"index_col": "Channel"},
+]
 urlPaths = urlHandler(recPaths)
 
-recDevices = ['1j-ic8K3ijarZR_fiKChPzpoiYeIZW6ZejvL94-u70H4',
-            '1880061717',
-            {'index_col': 'Device'}]
+recDevices = [
+    "1j-ic8K3ijarZR_fiKChPzpoiYeIZW6ZejvL94-u70H4",
+    "1880061717",
+    {"index_col": "Device"},
+]
 urlDevices = urlHandler(recDevices)
 
 
@@ -45,6 +50,7 @@ class objLocMgr(objFrame):
     myPaths: dict
     Dictionary of absolute local paths to use as base on current machine
     """
+
     def __init__(self, myDF, myPaths, myEnv, myDevice, *args, **kwargs):
         super(objLocMgr, self).__init__(myDF, args, kwargs)
         # self.arg = arg
@@ -135,12 +141,14 @@ class objLocMgr(objFrame):
         return objLoc(self.absLoc, self.relLoc(myLoc)).path
 
 
-locManager = objLocMgr(pd.read_csv(urlPaths.url, **urlPaths.kwargs), urlDevices, "Dev", myDevice)
+locManager = objLocMgr(
+    pd.read_csv(urlPaths.url, **urlPaths.kwargs), urlDevices, "Dev", myDevice
+)
 
 
 if __name__ == "__main__":
 
-    logMain.open(fileName='log-loc-mgr.log')
+    logMain.open(fileName="log-loc-mgr.log")
     logMain.logging_level = "INFO"
     logMain.console_mirror = True
 

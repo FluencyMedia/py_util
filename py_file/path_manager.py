@@ -6,11 +6,11 @@ from pathlib import PurePosixPath, PureWindowsPath
 
 
 def isPosixPath(myPath):
-    return ("/" in str(myPath))
+    return "/" in str(myPath)
 
 
 # @dec_log_entry_exit
-class objPath():
+class objPath:
     def __init__(self, myPath, isPosix=False):
         self._isPosix = isPosix
         self._parts = None
@@ -44,7 +44,7 @@ class objPath():
 
 
 # @dec_log_entry_exit
-class objLoc():
+class objLoc:
     def __init__(self, myRoot, myPath):
         self._isPosix = isPosixPath(myRoot)
         if self.isPosix:
@@ -85,13 +85,13 @@ if __name__ == "__main__":
 
     # logMain.open(fileName='path-log')
     logMain.console_mirror = True
-    logMain.logging_level = 'DEBUG'
+    logMain.logging_level = "DEBUG"
 
     testUnits = {}
-    testUnits['baseTest'] = False
-    testUnits['multiTest'] = True
+    testUnits["baseTest"] = False
+    testUnits["multiTest"] = True
 
-    if testUnits['baseTest']:
+    if testUnits["baseTest"]:
         tmpLoc = "Dev\\TestLoc\\Test"
         tmpPath = objPath(tmpLoc)
         logMain.INFO("Output Path: " + tmpPath.path)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
         tmpPath = objPath(tmpLoc)
         logMain.INFO("Output Path: " + tmpPath.path)
 
-    if testUnits['multiTest']:
+    if testUnits["multiTest"]:
         # @dec_log_entry_exit
         def testPath(strRoot, strLoc):
             """
@@ -116,7 +116,13 @@ if __name__ == "__main__":
             logMain.write("Location: " + myLoc.path)
 
         tmpLoc = "Dev\\TestLoc"
-        testPath("C:\\Users\\lstanevich\\Dropbox (Fluency Media)\\Fluency - Beaumont Content\\Beaumont.org Content Migration", tmpLoc)
-        testPath("/Users/lstanevich/Dropbox (Fluency Media)/Fluency - Beaumont Content/Beaumont.org Content Migration", tmpLoc)
+        testPath(
+            "C:\\Users\\lstanevich\\Dropbox (Fluency Media)\\Fluency - Beaumont Content\\Beaumont.org Content Migration",
+            tmpLoc,
+        )
+        testPath(
+            "/Users/lstanevich/Dropbox (Fluency Media)/Fluency - Beaumont Content/Beaumont.org Content Migration",
+            tmpLoc,
+        )
         # testPath(str(PurePath.cwd()), tmpLoc)
         # myTest = objPath("C:\\Users\\lstanevich\\Dropbox (Fluency Media)\\Fluency - Beaumont Content\\Beaumont.org Content Migration")
