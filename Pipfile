@@ -4,12 +4,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+black = "==19.3b0"
+pytest = "*"
 
 [packages]
 appdirs = "*"
 atomicwrites = "*"
 attrs = "*"
-black = "==19.3b0"
 certifi = "*"
 chardet = "*"
 click = "*"
@@ -20,7 +21,6 @@ numpy = "*"
 pandas = "*"
 pluggy = "*"
 py = "*"
-pytest = "*"
 python-dateutil = "*"
 pytz = "*"
 requests = "*"
