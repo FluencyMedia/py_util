@@ -4,28 +4,28 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "==19.3b0"
-pytest = "*"
-
-[packages]
 appdirs = "*"
 atomicwrites = "*"
 attrs = "*"
+black = "==19.3b0"
+click = "*"
+pluggy = "*"
+py = "*"
+pytest = "*"
+six = "*"
+toml = "*"
+
+[packages]
 certifi = "*"
 chardet = "*"
-click = "*"
 colorama = "*"
 idna = "*"
 more-itertools = "*"
 numpy = "*"
 pandas = "*"
-pluggy = "*"
-py = "*"
 python-dateutil = "*"
 pytz = "*"
 requests = "*"
-six = "*"
-toml = "*"
 urllib3 = "*"
 
 [requires]
