@@ -1,5 +1,6 @@
 import os
 
+# noinspection PyUnresolvedReferences
 import pytest
 import logger
 
@@ -68,46 +69,46 @@ def test_file_out():
     assert True
 
 
-def testBase():
-    tmpLogger = logger.ClsLogger(fileName="log-test", fileExt="log")
-    tmpLogger.write()
-    tmpLogger.write("Testing")
-    tmpLogger.write("Indent 01", indentLevel=1)
-    tmpLogger.write("Indent 02", indentLevel=2, padBefore=1, padAfter=2)
-    tmpLogger.write("Testing Level 02")
-    tmpLogger.write("Testing Temp Level", myLevel=0)
-    tmpLogger.write("Testing Level 02")
-    tmpLogger.indent_level = 3
-    tmpLogger.write("Testing Level 03")
-    tmpLogger.indent_size = 10
-    tmpLogger.write("Testing Level 03")
+def test_base():
+    tmp_logger = logger.ClsLogger(fileName="log-test", fileExt="log")
+    tmp_logger.write()
+    tmp_logger.write("Testing")
+    tmp_logger.write("Indent 01", indentLevel=1)
+    tmp_logger.write("Indent 02", indentLevel=2, padBefore=1, padAfter=2)
+    tmp_logger.write("Testing Level 02")
+    tmp_logger.write("Testing Temp Level", myLevel=0)
+    tmp_logger.write("Testing Level 02")
+    tmp_logger.indent_level = 3
+    tmp_logger.write("Testing Level 03")
+    tmp_logger.indent_size = 10
+    tmp_logger.write("Testing Level 03")
 
     assert True
 
 
-def testLevels():
-    tmpLogger = logger.ClsLogger(fileName="log-test", fileExt="log")
+def test_levels():
+    tmp_logger = logger.ClsLogger(fileName="log-test", fileExt="log")
 
-    tmpLogger.DEBUG("Test")
-    tmpLogger.INFO("Test")
-    tmpLogger.WARNING("Test")
-    tmpLogger.ERROR("Test")
-    tmpLogger.CRITICAL("Test")
+    tmp_logger.DEBUG("Test")
+    tmp_logger.INFO("Test")
+    tmp_logger.WARNING("Test")
+    tmp_logger.ERROR("Test")
+    tmp_logger.CRITICAL("Test")
 
-    # tmpLogger.write("New Threshold: " + tmpLogger.logging_level('DEBUG'), padBefore=1, padAfter=1)
+    # tmp_logger.write("New Threshold: " + tmp_logger.logging_level('DEBUG'), padBefore=1, padAfter=1)
 
-    tmpLogger.DEBUG("Test")
-    tmpLogger.INFO("Test")
-    tmpLogger.WARNING("Test")
-    tmpLogger.ERROR("Test")
-    tmpLogger.CRITICAL("Test")
+    tmp_logger.DEBUG("Test")
+    tmp_logger.INFO("Test")
+    tmp_logger.WARNING("Test")
+    tmp_logger.ERROR("Test")
+    tmp_logger.CRITICAL("Test")
 
     assert True
 
 
 if __name__ == "__main__":
     test_stress()
-    # test_paths()
-    testBase()
-    testLevels()
+    test_paths()
+    test_base()
+    test_levels()
     test_file_out()
