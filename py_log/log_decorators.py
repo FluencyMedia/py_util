@@ -6,6 +6,7 @@ Created on Mon Sep  5 12:28:14 2016
 """
 
 import datetime
+
 from py_log.logger import logMain
 
 
@@ -65,7 +66,6 @@ def dec_log_debug_override(func):
 
 
 if __name__ == "__main__":
-
     #    from py_log.logger import ClsLogger
 
     logMain.logging_level = "DEBUG"

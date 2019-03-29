@@ -8,8 +8,8 @@ Created on Thu Sep  13 18:03:00 2016
 # import typing
 import os
 
-from py_file.file_manager import fManager
 from config_main import strTimestamp
+from py_file.file_manager import fManager
 
 
 # %% Class ClsLogger
@@ -17,17 +17,17 @@ from config_main import strTimestamp
 # noinspection PyTypeChecker
 class ClsLogger:
     """
-    Generates new instance of logging object
+	Generates new instance of logging object
 
-    Optional Attributes
-    -------------------
-        indent_level: int
-            Overrides default indentation level of 0
-        indent_size: int
-            Overrides default indentation size of 4 spaces
-        logging_level: str
-            Overrides default minimum logging_level of 'WARNING'
-    """
+	Optional Attributes
+	-------------------
+		indent_level: int
+			Overrides default indentation level of 0
+		indent_size: int
+			Overrides default indentation size of 4 spaces
+		logging_level: str
+			Overrides default minimum logging_level of 'WARNING'
+	"""
 
     # %% Class constructor
 
@@ -77,8 +77,8 @@ class ClsLogger:
     @property
     def indent_size(self):
         """
-        Assigns or returns the current indent_size
-        """
+		Assigns or returns the current indent_size
+		"""
         return self._properties["indent_size"]
 
     @indent_size.setter
@@ -98,12 +98,12 @@ class ClsLogger:
 
     def indent_lower(self, int_lower=None):
         """
-        Forcefully lowers the current level of indentation
-        Arguments
-        ---------
-            int_lower: int
-                Optional: The number of levels by which indentation should be lowered (if not provided, =1)
-        """
+		Forcefully lowers the current level of indentation
+		Arguments
+		---------
+			int_lower: int
+				Optional: The number of levels by which indentation should be lowered (if not provided, =1)
+		"""
         if not int_lower:
             int_change = 1
         else:
@@ -125,15 +125,15 @@ class ClsLogger:
 
     def indent(self, **kwargs):
         """
-        Returns the actual string of spaces that provides the correct indentation for the current line
+		Returns the actual string of spaces that provides the correct indentation for the current line
 
-        Optional Arguments
-        ------------------
-        myLevel: int
-            Temporarily overrides the current indentation level
-        mySize: int
-            Temporarily overrides the current indentation size
-        """
+		Optional Arguments
+		------------------
+		myLevel: int
+			Temporarily overrides the current indentation level
+		mySize: int
+			Temporarily overrides the current indentation size
+		"""
         if "myLevel" in kwargs:
             ind_level = kwargs["myLevel"]
         else:
@@ -161,17 +161,17 @@ class ClsLogger:
 
     def open(self, **kwargs):
         """
-        Opens an actual file object for output.
-        (If .open() is never called, then all log output is routed to the console.)
+		Opens an actual file object for output.
+		(If .open() is never called, then all log output is routed to the console.)
 
-        Optional KW Arguments
-        ---------------------
-        fileName: string
-        The name of the file to be opened. (If no extension is supplied, then '.log' is added.)
+		Optional KW Arguments
+		---------------------
+		fileName: string
+		The name of the file to be opened. (If no extension is supplied, then '.log' is added.)
 
-        strHeader: string
-        Header string to be output at the top of the file
-        """
+		strHeader: string
+		Header string to be output at the top of the file
+		"""
         if not self._fOpen:
 
             if "root" in kwargs:
@@ -216,21 +216,21 @@ class ClsLogger:
 
     def write(self, str_output=None, **kwargs):
         """
-        Outputs one line directly to the log file, under the following conditions:
-            - Prints directly to the log, without checking the current 'logging_level' threshold
-            - Prints at the current indentation level (unless overridden with optional args)
+		Outputs one line directly to the log file, under the following conditions:
+			- Prints directly to the log, without checking the current 'logging_level' threshold
+			- Prints at the current indentation level (unless overridden with optional args)
 
-        Optional Arguments
-        ------------------
-        padBefore, padAfter: int
-            Cause x number of blank lines to be output before or after the current line is output
-        console: boolean
-            Causes the current line to also be printed to the console
-        indent_level, indent_size: int
-            Locally override those settings for the current line
-        prefix: str
-            Will be added to the beginning of the current line before output, followed by ": "
-        """
+		Optional Arguments
+		------------------
+		padBefore, padAfter: int
+			Cause x number of blank lines to be output before or after the current line is output
+		console: boolean
+			Causes the current line to also be printed to the console
+		indent_level, indent_size: int
+			Locally override those settings for the current line
+		prefix: str
+			Will be added to the beginning of the current line before output, followed by ": "
+		"""
 
         if "padBefore" in kwargs:
             try:
@@ -313,41 +313,41 @@ class ClsLogger:
     # noinspection PyPep8Naming
     def DEBUG(self, str_out=None, *args, **kwargs):
         """
-        Will only log arguments at logging level:
-            'DEBUG'
-        """
+		Will only log arguments at logging level:
+			'DEBUG'
+		"""
         self._lwrite("DEBUG", str_out, *args, **kwargs)
 
     # noinspection PyPep8Naming
     def INFO(self, str_out=None, *args, **kwargs):
         """
-        Will log arguments at logging levels:
-            'DEBUG', 'INFO'
-        """
+		Will log arguments at logging levels:
+			'DEBUG', 'INFO'
+		"""
         self._lwrite("INFO", str_out, *args, **kwargs)
 
     # noinspection PyPep8Naming
     def WARNING(self, str_out=None, *args, **kwargs):
         """
-        Will log arguments at logging levels:
-            'DEBUG', 'INFO', 'WARNING'
-        """
+		Will log arguments at logging levels:
+			'DEBUG', 'INFO', 'WARNING'
+		"""
         self._lwrite("WARNING", str_out, *args, **kwargs)
 
     # noinspection PyPep8Naming
     def ERROR(self, str_out=None, *args, **kwargs):
         """
-        Will log arguments at logging levels:
-            'DEBUG', 'INFO', 'WARNING', 'ERROR'
-        """
+		Will log arguments at logging levels:
+			'DEBUG', 'INFO', 'WARNING', 'ERROR'
+		"""
         self._lwrite("ERROR", str_out, *args, **kwargs)
 
     # noinspection PyPep8Naming
     def CRITICAL(self, str_out=None, *args, **kwargs):
         """
-        Will cause arguments to be logged at all logging levels:
-            'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
-        """
+		Will cause arguments to be logged at all logging levels:
+			'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
+		"""
         self._lwrite("CRITICAL", str_out, *args, **kwargs)
 
 
@@ -358,48 +358,4 @@ logMain = ClsLogger()
 # %% Unit tests
 
 if __name__ == "__main__":
-
-    testBase = True
-    testLevels = False
-    testStress = False
-
-    # %% Base tests
-
-    if testBase:
-        #        tmpLogger = ClsLogger(fileName = "log-test", fileExt = "log")
-        tmpLogger = ClsLogger()
-        tmpLogger.write()
-        tmpLogger.write("Testing")
-        tmpLogger.write("Indent 01", indentLevel=1)
-        tmpLogger.write("Indent 02", indentLevel=2, padBefore=1, padAfter=2)
-        tmpLogger.write("Testing Level 02")
-        tmpLogger.write("Testing Temp Level", myLevel=0)
-        tmpLogger.write("Testing Level 02")
-        tmpLogger.indent_level = 3
-        tmpLogger.write("Testing Level 03")
-        tmpLogger.indent_size = 10
-        tmpLogger.write("Testing Level 03")
-
-    # %% Logging level tests
-
-    if testLevels:
-        tmpLogger = ClsLogger(fileName="log-test", fileExt="log")
-
-        tmpLogger.DEBUG("Test")
-        tmpLogger.INFO("Test")
-        tmpLogger.WARNING("Test")
-        tmpLogger.ERROR("Test")
-        tmpLogger.CRITICAL("Test")
-
-        # tmpLogger.write("New Threshold: " + tmpLogger.logging_level('DEBUG'), padBefore=1, padAfter=1)
-
-        tmpLogger.DEBUG("Test")
-        tmpLogger.INFO("Test")
-        tmpLogger.WARNING("Test")
-        tmpLogger.ERROR("Test")
-        tmpLogger.CRITICAL("Test")
-
-    # %% Stress tests
-
-    if testStress:
-        pass
+    print("ERROR: Attempt to run 'logger.py' directly")
